@@ -1,0 +1,105 @@
+# =========================
+# Build results
+# =========================
+bin/
+obj/
+out/
+
+# =========================
+# .NET Core / ASP.NET Core
+# =========================
+*.dll
+*.exe
+*.pdb
+*.cache
+*.deps.json
+*.runtimeconfig.json
+
+# =========================
+# User-specific files
+# =========================
+*.user
+*.rsuser
+*.suo
+*.userosscache
+*.sln.docstates
+
+# =========================
+# Visual Studio
+# =========================
+.vs/
+.vscode/
+.idea/
+
+# =========================
+# Rider
+# =========================
+.idea/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# Test results
+# =========================
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+
+# =========================
+# NuGet
+# =========================
+*.nupkg
+*.snupkg
+.nuget/
+
+# =========================
+# Publish output
+# =========================
+publish/
+wwwroot/lib/
+
+# =========================
+# App settings (secrets)
+# =========================
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.json
+
+# =========================
+# Database files
+# =========================
+*.db
+*.sqlite
+*.sqlite3
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+
+# =========================
+# Docker
+# =========================
+docker-compose.override.yml
