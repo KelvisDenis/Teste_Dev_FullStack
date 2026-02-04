@@ -13,7 +13,7 @@ namespace Teste_Dev_FullStack.Infraestructure.UnityOfWork
            
         }
 
-        public async Task SavechangesAsync()
+        public async Task CommitAsync()
         {
             await _context.SaveChangesAsync();
         }

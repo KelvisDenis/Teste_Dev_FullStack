@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Teste_Dev_FullStack.Domain.Entities;
+using Teste_Dev_FullStack.Domain.Interfaces.Repositories;
 using Teste_Dev_FullStack.Infraestructure.Data;
-using Teste_Dev_FullStack.Infraestructure.Repositories.Interfaces;
 
-namespace Teste_Dev_FullStack.Infraestructure.Repositories.Implementation
+namespace Teste_Dev_FullStack.Infraestructure.Repositories
 {
     public class CategoryRepository: ICategoryRepository
     {
@@ -28,7 +28,7 @@ namespace Teste_Dev_FullStack.Infraestructure.Repositories.Implementation
         {
             if (id == Guid.Empty) throw new ArgumentException("Invalid category ID.", nameof(id));
 
-            return _context.CategoriesSet.FirstOrDefaultAsync(c => c.Id ==id));
+            return _context.CategoriesSet.FirstOrDefaultAsync(c => c.Id ==id);
         }
 
         public Task<Category> UpdateAsync(Category entity)

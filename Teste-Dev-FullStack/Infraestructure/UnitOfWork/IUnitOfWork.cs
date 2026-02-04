@@ -2,7 +2,7 @@
 {
     public interface IUnitOfWork
     {
-        Task SavechangesAsync();
+        Task CommitAsync();
         Task RoolbackAsync();
     }
 }

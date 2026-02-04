@@ -18,5 +18,15 @@ namespace Teste_Dev_FullStack.Domain.Entities
         public Guid PersonId { get; set; }
         [Required]
         public Guid CategoryId { get; set; }
+
+        public Transection(decimal amount, string description, ETransectionType transectionType, Guid personId, Guid categoryId)
+        {
+            Id = Guid.NewGuid();
+            Amount = amount;
+            Description = description;
+            TransectionType = transectionType;
+            PersonId = personId;
+            CategoryId = categoryId;
+        }
     }
 }

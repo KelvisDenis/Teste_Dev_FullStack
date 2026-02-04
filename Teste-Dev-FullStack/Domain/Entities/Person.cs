@@ -13,5 +13,20 @@ namespace Teste_Dev_FullStack.Domain.Entities
         public int Age { get; set; }
         [Required]
         public Transection Transection { get; set; }
+
+        public Person(string name, int age)
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+            Age = age;
+        }
+
+        public Person(string name, int age, Transection transection)
+        {
+            Id = Guid.NewGuid();
+            Name = name;
+            Age = age;
+            Transection = transection;
+        }
     }
 }

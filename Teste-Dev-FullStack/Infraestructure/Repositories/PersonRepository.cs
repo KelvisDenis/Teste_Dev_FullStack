@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Teste_Dev_FullStack.Domain.Entities;
+using Teste_Dev_FullStack.Domain.Interfaces.Repositories;
 using Teste_Dev_FullStack.Infraestructure.Data;
-using Teste_Dev_FullStack.Infraestructure.Repositories.Interfaces;
 
-namespace Teste_Dev_FullStack.Infraestructure.Repositories.Implementation
+namespace Teste_Dev_FullStack.Infraestructure.Repositories
 {
     public class PersonRepository: IPersonRepository
     {

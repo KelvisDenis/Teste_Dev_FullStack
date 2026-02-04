@@ -1,4 +1,4 @@
-﻿namespace Teste_Dev_FullStack.Infraestructure.Repositories.Interfaces
+﻿namespace Teste_Dev_FullStack.Domain.Interfaces.Repositories
 {
     public interface IGenericRepository<T> where T : class
     {

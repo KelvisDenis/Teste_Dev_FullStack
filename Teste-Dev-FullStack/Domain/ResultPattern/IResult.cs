@@ -7,7 +7,7 @@ namespace Teste_Dev_FullStack.Domain.ResultPattern
     {
         bool IsSuccess { get; }
         bool IsFailure { get; }
-        GenerealExcept Error { get; }
+        GeneralExcept Error { get; }
     }
 
 }

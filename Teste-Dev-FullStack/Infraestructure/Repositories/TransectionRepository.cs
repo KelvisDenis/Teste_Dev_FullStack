@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Teste_Dev_FullStack.Domain.Entities;
+using Teste_Dev_FullStack.Domain.Interfaces.Repositories;
 using Teste_Dev_FullStack.Infraestructure.Data;
-using Teste_Dev_FullStack.Infraestructure.Repositories.Interfaces;
 
-namespace Teste_Dev_FullStack.Infraestructure.Repositories.Implementation
+namespace Teste_Dev_FullStack.Infraestructure.Repositories
 {
     public class TransectionRepository: ITransectionRepository
     {
@@ -35,6 +35,11 @@ namespace Teste_Dev_FullStack.Infraestructure.Repositories.Implementation
             if (personId == Guid.Empty) throw new ArgumentException("Invalid person ID.", nameof(personId));    
 
             return await _context.TransectionsSet.Where(t => t.PersonId == personId).ToListAsync();
+        }
+        public async Task<bool> HasTransacoesAsync(Guid personId)
+        {
+            if (personId == Guid.Empty) throw new ArgumentException("Invalid person ID.", nameof(personId));
+            return await _context.TransectionsSet.AnyAsync(t => t.PersonId == personId);
         }
         public async Task DeleteByPersonIdAsync(Guid personId)
         {

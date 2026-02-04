@@ -7,9 +7,9 @@ namespace Teste_Dev_FullStack.Domain.ResultPattern
     {
         public bool IsSuccess { get; }
         public bool IsFailure => !IsSuccess;
-        public GenerealExcept Error { get; }
+        public GeneralExcept Error { get; }
 
-        protected ResultBase(bool isSuccess, GenerealExcept error)
+        protected ResultBase(bool isSuccess, GeneralExcept error)
         {
             IsSuccess = isSuccess;
             Error = error;

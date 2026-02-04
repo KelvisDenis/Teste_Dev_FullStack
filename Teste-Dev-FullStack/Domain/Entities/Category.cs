@@ -11,5 +11,12 @@ namespace Teste_Dev_FullStack.Domain.Entities
         public string Description { get; set; }
         [Required]
         public EPurposeCategory PurposeCategory { get; set; }
+
+        public Category(string description, EPurposeCategory purposeCategory)
+        {
+            Id = Guid.NewGuid();
+            Description = description;
+            PurposeCategory = purposeCategory;
+        }
     }
 }
