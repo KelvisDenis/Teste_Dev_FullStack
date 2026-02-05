@@ -7,6 +7,7 @@ export function Header() {
         <NavLink to="/">Pessoas</NavLink>
         <NavLink to="/categories">Categorias</NavLink>
         <NavLink to="/transactions">Transações</NavLink>
+        <NavLink to="/totals">Total por Pessoa</NavLink>
       </nav>
     </header>
   )

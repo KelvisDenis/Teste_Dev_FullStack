@@ -25,7 +25,7 @@ O backend segue princípios de **Clean Architecture** e **separação de respons
 
 ### 📂 Estrutura de pastas
 
-Backend
+```Backend
 ├── Application
 │ └── Casos de uso, DTOs e regras de aplicação
 │
@@ -39,6 +39,7 @@ Backend
 ├── Controllers
 │ └── Endpoints da API
 
+```
 
 ### ❗ Sobre o uso de `.csproj`
 
@@ -69,7 +70,7 @@ O frontend foi desenvolvido utilizando **Vite**, **React** e **TypeScript**, pri
 
 ### 📂 Estrutura principal
 
-src
+```src
 ├── components
 │ ├── Button
 │ ├── Input
@@ -93,7 +94,7 @@ src
 |  └── Router.tsx
 |
 └── main.tsx
-
+```
 
 Componentes como **Input**, **Card**, **Table** e **Button** foram criados de forma reutilizável.
 
@@ -120,4 +121,4 @@ O projeto utiliza Docker para garantir um ambiente padronizado e facilitar a exe
 
 Na raiz do projeto, execute:
 
-```bash docker-compose up --build
+``` bash docker-compose up --build ```

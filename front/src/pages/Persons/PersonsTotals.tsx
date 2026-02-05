@@ -2,9 +2,20 @@ import { useEffect, useState } from 'react'
 import { personService } from '../../services/personService'
 import type { PersonTotals } from '../../interfaces/person'
 
+import { PersonsTotalsTable } from '../../components/Tables/PersonsTotalsTable'
+
+
 export function PersonsTotals() {
   const [totals, setTotals] = useState<PersonTotals[]>([])
 
+  async function onDeletePerson(id: string) {
+    try {
+      await personService.delete(id);
+    } catch (error) {
+      console.error("Erro ao deletar pessoa:", error);
+      alert("Não foi possível excluir a pessoa.");
+    }
+  }
   useEffect(() => {
     async function load() {
       const { data } = await personService.getTotals()
@@ -15,30 +26,12 @@ export function PersonsTotals() {
   }, [])
 
   return (
-    <div className="card">
-      <h2>Totais por Pessoa</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Receitas</th>
-            <th>Despesas</th>
-            <th>Saldo</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {totals.map(t => (
-            <tr key={t.name}>
-              <td>{t.name}</td>
-              <td>{t.totalIncome}</td>
-              <td>{t.totalExpense}</td>
-              <td>{t.balance}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="container">
+      <h1>Pessoas</h1>
+      <PersonsTotalsTable
+        persons={totals}
+        onDelete={onDeletePerson}
+      />
     </div>
   )
 }
