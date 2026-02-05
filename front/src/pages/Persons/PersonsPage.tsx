@@ -17,6 +17,16 @@ export function PersonsPage() {
     loadPersons()
   }, [])
 
+  async function onDeletePerson(id: string) {
+    try {
+      await personService.delete(id);
+      await loadPersons(); 
+    } catch (error) {
+      console.error("Erro ao deletar pessoa:", error);
+      alert("Não foi possível excluir a pessoa.");
+    }
+  }
+
   return (
     <div className="container">
       <h1>Pessoas</h1>
@@ -25,7 +35,7 @@ export function PersonsPage() {
 
       <PersonsTable
         persons={persons}
-        onDelete={loadPersons}
+        onDelete={onDeletePerson}
       />
 
       <PersonsTotals />

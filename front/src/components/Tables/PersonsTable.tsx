@@ -4,7 +4,7 @@ import { Table } from '../UI/Table'
 
 interface Props {
   persons: Person[]
-  onDelete: () => void
+  onDelete: (id: string) => void
 }
 
 export function PersonsTable({ persons, onDelete }: Props) {
@@ -26,7 +26,7 @@ export function PersonsTable({ persons, onDelete }: Props) {
             <td>
               <Button
                 variant="danger"
-                onClick={() => onDelete()}
+                onClick={() => onDelete(p.id)}
               >
                 Excluir
               </Button>
