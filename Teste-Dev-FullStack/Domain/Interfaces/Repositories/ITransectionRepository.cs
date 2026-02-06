@@ -1,4 +1,5 @@
-﻿using Teste_Dev_FullStack.Domain.Entities;
+﻿using Teste_Dev_FullStack.Application.DTOs;
+using Teste_Dev_FullStack.Domain.Entities;
 
 namespace Teste_Dev_FullStack.Domain.Interfaces.Repositories
 {

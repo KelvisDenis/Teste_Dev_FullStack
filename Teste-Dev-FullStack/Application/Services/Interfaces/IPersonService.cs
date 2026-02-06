@@ -7,6 +7,8 @@ namespace Teste_Dev_FullStack.Application.Services.Interfaces
     {
         Task<Result<PersonDto>> CreateAsync(CreatePersonDto dto);
         Task<Result<IEnumerable<PersonDto>>> GetAllAsync();
+        Task<Result<IEnumerable<PersonTotalsDto>>> GetPersonsTotalsAsync();
+
         Task<Result<bool>> DeleteAsync(Guid id);
     }
 

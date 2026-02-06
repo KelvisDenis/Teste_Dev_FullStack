@@ -40,16 +40,15 @@ public class TransectionService : ITransectionService
                 GeneralExcept.NotFound("Pessoa não encontrada")
             );
 
+        if (person.Age < 18 && dto.Type == ETransectionType.Income)
+            return Result<TransectionDto>.Failure(
+                GeneralExcept.Validation("Menores de idade só podem registrar despesas")
+            );
+
         var category = await _categoryRepository.GetByIdAsync(dto.CategoryId);
         if (category == null)
             return Result<TransectionDto>.Failure(
                 GeneralExcept.NotFound("Categoria não encontrada")
-            );
-
-
-        if (person.Age < 18 && dto.Type == ETransectionType.Revenue)
-            return Result<TransectionDto>.Failure(
-                GeneralExcept.Validation("Menores de idade só podem registrar despesas")
             );
 
         if (category.PurposeCategory != EPurposeCategory.Both &&
@@ -58,12 +57,19 @@ public class TransectionService : ITransectionService
                 GeneralExcept.Validation("Categoria incompatível com o tipo da transação")
             );
 
+        if (dto.Type == ETransectionType.Expense &&
+            category.Equals(EPurposeCategory.Income)
+            )
+            return Result<TransectionDto>.Failure(
+                GeneralExcept.Validation("Categoria incompatível com o tipo da transação"));
+
+
         var transection = new Transection(
             dto.Value,
             dto.Description,
             dto.Type,
-            dto.CategoryId,
-            dto.PersonId
+            dto.PersonId,
+            dto.CategoryId
         );
 
         await _transectionRepository.AddAsync(transection);
@@ -75,8 +81,8 @@ public class TransectionService : ITransectionService
             Description: transection.Description,
             Value : transection.Amount,
             Type: transection.TransectionType,
-            CategoryId : transection.CategoryId,
-            PersonId: person.Id
+            PersonId: person.Id,
+            CategoryId : transection.CategoryId
         ));
     }
 

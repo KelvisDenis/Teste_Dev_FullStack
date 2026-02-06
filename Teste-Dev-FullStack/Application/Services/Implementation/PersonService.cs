@@ -1,6 +1,8 @@
-﻿using Teste_Dev_FullStack.Application.DTOs;
+﻿using System;
+using Teste_Dev_FullStack.Application.DTOs;
 using Teste_Dev_FullStack.Application.Services.Interfaces;
 using Teste_Dev_FullStack.Domain.Entities;
+using Teste_Dev_FullStack.Domain.Enums;
 using Teste_Dev_FullStack.Domain.Erros;
 using Teste_Dev_FullStack.Domain.Interfaces.Repositories;
 using Teste_Dev_FullStack.Domain.ResultPattern;
@@ -48,9 +50,9 @@ namespace Teste_Dev_FullStack.Application.Services.Implementation
 
         public async Task<Result<IEnumerable<PersonDto>>> GetAllAsync()
         {
-            var person = await _personRepository.GetAllAsync();
+            var persons =  await _personRepository.GetAllAsync();
 
-            var result = person.Select(p => new PersonDto
+            var result = persons.Select(p => new PersonDto
             (
                 Id: p.Id,
                 Name: p.Name,
@@ -60,10 +62,46 @@ namespace Teste_Dev_FullStack.Application.Services.Implementation
             return Result<IEnumerable<PersonDto>>.Success(result);
         }
 
+        public async Task<Result<IEnumerable<PersonTotalsDto>>> GetPersonsTotalsAsync()
+        {
+            var person = await  _personRepository.GetTotalsGroupedByPersonAsync();
+
+            if (person == null || !person.Any())
+                return Result<IEnumerable<PersonTotalsDto>>.Failure(
+                    GeneralExcept.NotFound("Nenhuma pessoa encontrada")
+                );
+
+            var transactions = await _transectionRepository.GetAllAsync();
+
+            if (transactions == null)
+                return Result<IEnumerable<PersonTotalsDto>>.Failure(
+                    GeneralExcept.NotFound("Nenhuma transação encontrada")
+                );
+
+            var result =  person.Select(p => new PersonTotalsDto
+            (
+                PersonId: p.Id,
+                Name: p.Name,
+                TotalIncome: transactions
+                    .Where(t => t.PersonId == p.Id && t.TransectionType == ETransectionType.Expense)
+                    .Sum(t => t.Amount),
+                TotalExpense: transactions
+                    .Where(t => t.PersonId == p.Id && t.TransectionType == ETransectionType.Income)
+                    .Sum(t => t.Amount),
+                TotalBalance: transactions
+                    .Where(t => t.PersonId == p.Id)
+                    .Sum(t => t.TransectionType == ETransectionType.Income ? t.Amount : -t.Amount)
+            ));
+
+            return  Result<IEnumerable<PersonTotalsDto>>.Success(result);    
+
+        }
+
+
         public async Task<Result<bool>> DeleteAsync(Guid id)
         {
-            var pessoa = await _personRepository.GetByIdAsync(id);
-            if (pessoa == null)
+            var person = await _personRepository.GetByIdAsync(id);
+            if (person == null)
                 return Result<bool>.Failure(
                     GeneralExcept.NotFound("Pessoa não encontrada")
                 );
@@ -73,7 +111,7 @@ namespace Teste_Dev_FullStack.Application.Services.Implementation
                 await _transectionRepository.DeleteByPersonIdAsync(id);
             }
 
-            await _personRepository.DeleteAsync(pessoa);
+            await _personRepository.DeleteAsync(person);
             await _unitOfWork.CommitAsync();
 
             return Result<bool>.Success(true);

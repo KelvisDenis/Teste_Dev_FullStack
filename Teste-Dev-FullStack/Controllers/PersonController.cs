@@ -36,6 +36,19 @@ namespace Teste_Dev_FullStack.API.Controllers
             return Ok(result.Value);
         }
 
+        [HttpGet("totals")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<IActionResult> GetTotals()
+        {
+            var result = await _personService.GetPersonsTotalsAsync();
+
+            if (result.IsFailure)
+                return BadRequest(result.Error);
+
+            return Ok(result.Value);
+        }
+
+
         [HttpDelete("{id:guid}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
