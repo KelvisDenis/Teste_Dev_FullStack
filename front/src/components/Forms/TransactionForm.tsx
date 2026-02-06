@@ -9,6 +9,7 @@ import type { TransactionType } from '../../interfaces/transection'
 import { Select } from '../UI/Select'
 import { categoryService } from '../../services/categoryService'
 import { transactionService } from '../../services/transactionService'
+import type { AxiosError } from 'axios'
 
 interface Props {
   onSuccess: () => void
@@ -53,8 +54,10 @@ export function TransactionForm({ onSuccess }: Props) {
         personId
       })
 
-    } catch (error) {
-      alert(error)
+    } catch(error) {
+      const err = error as AxiosError<{ message: string }>
+
+      alert(err.response?.data?.message ?? 'Erro ao criar transação')
     }
 
 

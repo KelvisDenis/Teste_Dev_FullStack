@@ -15,36 +15,34 @@ export function CategoriesTable({ categories, onDelete }: Props) {
       <Table>
 
 
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Descrição</th>
-              <th>Finalidade</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Finalidade</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
 
-          <tbody>
-            {categories.map(category => (
-              <tr key={category.id}>
-                <td>{category.description}</td>
-                <td className={category.purpose}>
-                  {category.purpose === 'expense' && 'Despesa'}
-                  {category.purpose === 'income' && 'Receita'}
-                  {category.purpose === 'both' && 'Ambos'}
-                </td>
-                <td>
-                  <Button
-                    variant="danger"
-                    onClick={() => onDelete(category.id)}
-                  >
-                    Excluir
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <tbody>
+          {categories.map(category => (
+            <tr key={category.id}>
+              <td>{category.description}</td>
+              <td className={category.purpose}>
+                {category.purpose === 'expense' && 'Despesa'}
+                {category.purpose === 'income' && 'Receita'}
+                {category.purpose === 'both' && 'Ambos'}
+              </td>
+              <td>
+                <Button
+                  variant="danger"
+                  onClick={() => onDelete(category.id)}
+                >
+                  Excluir
+                </Button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
       </Table>
 
     </Card>

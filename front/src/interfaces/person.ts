@@ -9,5 +9,5 @@ export interface PersonTotals {
   name: string
   totalIncome: number
   totalExpense: number
-  balance: number
+  totalBalance: number
 }

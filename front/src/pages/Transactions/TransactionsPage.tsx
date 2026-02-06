@@ -19,15 +19,7 @@ export function TransactionsPage() {
         loadTransactions()
     }, [])
 
-    async function onDeleteTransaction(id: string) {
-        try {
-            await transactionService.delete(id)
-            await loadTransactions()
-        } catch (error) {
-            console.error('Erro ao deletar transação:', error)
-            alert('Não foi possível excluir a transação.')
-        }
-    }
+    
 
     const { paginatedData, totalPages } = usePagination({
         data: transactions,
@@ -43,7 +35,6 @@ export function TransactionsPage() {
 
             <TransactionsTable
                 transactions={paginatedData}
-                onDelete={onDeleteTransaction}
             />
 
             <Pagination

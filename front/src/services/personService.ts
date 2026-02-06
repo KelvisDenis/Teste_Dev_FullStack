@@ -11,5 +11,5 @@ export const personService = {
         api.delete(`persons/${id}`),
 
     getTotals: () =>
-        api.get<PersonTotals[]>('/persons/totals'),
+        api.get<PersonTotals[]>('persons/totals'),
 }
