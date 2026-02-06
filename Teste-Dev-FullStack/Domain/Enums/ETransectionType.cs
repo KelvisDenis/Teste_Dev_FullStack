@@ -3,7 +3,7 @@
     public enum ETransectionType: int
     {
         
-        Revenue = 1,
+        Income = 1,
         Expense = 2
     }
 }

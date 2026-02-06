@@ -2,7 +2,7 @@
 {
     public enum EPurposeCategory   : int                                                                                
     {
-        Revenue = 1,
+        Income = 1,
         Expense = 2,
         Both = 3
 

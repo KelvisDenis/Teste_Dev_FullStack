@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Teste_Dev_FullStack.Application.DTOs;
 using Teste_Dev_FullStack.Domain.Entities;
+using Teste_Dev_FullStack.Domain.Enums;
 using Teste_Dev_FullStack.Domain.Interfaces.Repositories;
 using Teste_Dev_FullStack.Infraestructure.Data;
 
@@ -44,6 +46,11 @@ namespace Teste_Dev_FullStack.Infraestructure.Repositories
 
             return Task.FromResult(entity);
         }
+        public async Task<IEnumerable<Person>> GetTotalsGroupedByPersonAsync()
+        {
+            return await _context.PersonsSet.ToListAsync();
+        }
+
         public Task DeleteAsync(Person entity)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity), "Person entity cannot be null.");

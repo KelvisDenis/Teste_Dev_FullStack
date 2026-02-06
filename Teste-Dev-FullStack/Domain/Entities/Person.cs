@@ -11,8 +11,9 @@ namespace Teste_Dev_FullStack.Domain.Entities
         public string Name { get; set; }
         [Required]
         public int Age { get; set; }
+
         [Required]
-        public Transection Transection { get; set; }
+        public ICollection<Transection> Transections { get; set; } = new List<Transection>();
 
         public Person(string name, int age)
         {
@@ -21,12 +22,6 @@ namespace Teste_Dev_FullStack.Domain.Entities
             Age = age;
         }
 
-        public Person(string name, int age, Transection transection)
-        {
-            Id = Guid.NewGuid();
-            Name = name;
-            Age = age;
-            Transection = transection;
-        }
+      
     }
 }

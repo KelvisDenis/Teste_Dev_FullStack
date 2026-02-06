@@ -16,8 +16,11 @@ namespace Teste_Dev_FullStack.Domain.Entities
         public ETransectionType TransectionType { get; set; }
         [Required]
         public Guid PersonId { get; set; }
+        public Person Person { get; set; } = null;
         [Required]
         public Guid CategoryId { get; set; }
+        public Category Category { get; set; }
+
 
         public Transection(decimal amount, string description, ETransectionType transectionType, Guid personId, Guid categoryId)
         {
@@ -27,6 +30,21 @@ namespace Teste_Dev_FullStack.Domain.Entities
             TransectionType = transectionType;
             PersonId = personId;
             CategoryId = categoryId;
+        }
+        public Transection(Guid id, decimal amount, string description, ETransectionType transectionType, Guid personId, Person person, Guid categoryId)
+        {
+            Id = id;
+            Amount = amount;
+            Description = description;
+            TransectionType = transectionType;
+            PersonId = personId;
+            Person = person;
+            CategoryId = categoryId;
+        }
+
+        public Transection(Guid id, decimal amount, string description, ETransectionType transectionType, Guid personId, Person person, Guid categoryId, Category category) : this(id, amount, description, transectionType, personId, person, categoryId)
+        {
+            Category = category;
         }
     }
 }

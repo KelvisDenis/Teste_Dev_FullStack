@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Teste_Dev_FullStack.Application.DTOs;
 using Teste_Dev_FullStack.Domain.Entities;
+using Teste_Dev_FullStack.Domain.Enums;
 using Teste_Dev_FullStack.Domain.Interfaces.Repositories;
 using Teste_Dev_FullStack.Infraestructure.Data;
 
@@ -29,6 +31,7 @@ namespace Teste_Dev_FullStack.Infraestructure.Repositories
 
             return _context.TransectionsSet.FirstOrDefaultAsync(c => c.Id == id);
         }
+
 
         public async Task<IEnumerable<Transection>> GetByPersonIdAsync(Guid personId)
         {
