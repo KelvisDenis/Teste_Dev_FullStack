@@ -114,11 +114,32 @@ O projeto utiliza Docker para garantir um ambiente padronizado e facilitar a exe
 
 ### ✅ Pré-requisitos
 
-- Docker
-- Docker Compose
+- Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+
+- .NET SDK 8.0
+
+- PostgreSQL
+
+- Git
+
+### Banco de Dados (PostgreSQL)
+
+Crie um banco de dados no PostgreSQL com o nome:
+- teste_dev
 
 ### ▶️ Como rodar o projeto
 
-Na raiz do projeto, execute:
 
-``` bash docker-compose up --build ```
+### Backend (ASP.NET Core)
+
+```cd Teste-Dev-FullStack```
+```dotnet restore```
+```dotnet run```
+
+### Frontend (React + Vite)
+
+```cd front```
+```npm install```
+```npm run dev```
