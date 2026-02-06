@@ -1,6 +1,6 @@
 # 🚀 Teste Dev Full Stack
 
-Projeto Full Stack desenvolvido como **teste técnico**, com foco em **boas práticas**, **organização de código**, **isolamento de responsabilidades** e **facilidade de execução via Docker**.
+Projeto Full Stack desenvolvido como **teste técnico**, com foco em **boas práticas**, **organização de código**, **isolamento de responsabilidades**.
 
 Mesmo sendo um projeto de avaliação, a estrutura foi pensada com **mentalidade de produção**, visando escalabilidade e manutenibilidade.
 
@@ -13,9 +13,6 @@ Este projeto é composto por:
 - **Backend:** ASP.NET Core
 - **Frontend:** React + TypeScript (Vite)
 - **Banco de Dados:** PostgreSQL
-- **Containerização:** Docker e Docker Compose
-
-Todo o ambiente pode ser iniciado com **um único comando**.
 
 ---
 
@@ -108,10 +105,6 @@ O backend foi configurado para aceitar requisições do frontend através de **C
 
 ---
 
-## 🐳 Docker & Docker Compose
-
-O projeto utiliza Docker para garantir um ambiente padronizado e facilitar a execução.
-
 ### ✅ Pré-requisitos
 
 - Pré-requisitos
@@ -134,12 +127,15 @@ Crie um banco de dados no PostgreSQL com o nome:
 
 ### Backend (ASP.NET Core)
 
-```cd Teste-Dev-FullStack```
-```dotnet restore```
-```dotnet run```
+- cd Teste-Dev-FullStack
+- dotnet tool install --global dotnet-ef
+- dotnet restore
+- dotnet ef migrations add InitialCreate
+- dotnet ef database update
+- dotnet run
 
 ### Frontend (React + Vite)
 
-```cd front```
-```npm install```
-```npm run dev```
+- cd front
+- npm install
+- npm run dev
